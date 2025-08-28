@@ -1,0 +1,9 @@
+font-family = "FiraCode Nerd Font"
+font-size = 15
+
+theme = "catppuccin-mocha"
+
+keybind = shift+enter=text:\n
+
+shell-integration = zsh
+cursor-style = block

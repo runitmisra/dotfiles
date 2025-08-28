@@ -1,0 +1,24 @@
+views:
+  v1/nodes:
+    columns:
+      - MACHINE:.metadata.labels.node\.kubernetes\.io\/instance\-type|W
+      - NODEPOOL:.metadata.labels.karpenter\.sh\/nodepool|W
+      - CAPACITY:.metadata.labels.karpenter\.sh\/capacity\-type|W
+      - LABELS|H
+      - EXTERNAL-IP|H
+      - VALID|H
+      - DISK:.status.capacity.ephemeral-storage|W
+      - AZ:.metadata.labels.topology\.ebs\.csi\.aws\.com\/zone|W
+  argoproj.io/v1alpha1/applications:
+    columns:
+      - NAMESPACE|H
+      - PROJECT:.spec.PROJECT
+  karpenter.sh/v1/nodeclaims:
+    columns:
+      - NAMESPACE|H
+  karpenter.sh/v1/nodepools:
+    columns:
+      - NAMESPACE|H
+  karpenter.k8s.aws/v1/ec2nodeclasses:
+    columns:
+      - NAMESPACE|H
