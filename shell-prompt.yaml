@@ -1,0 +1,107 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+transient_prompt:
+  background: transparent
+  foreground_templates:
+  - "{{if gt .Code 0}}red{{end}}"
+  - "{{if eq .Code 0}}magenta{{end}}"
+  template: "$ "
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+      style: full
+    template: "[{{ .Path }}]"
+    foreground: blue
+    background: transparent
+    type: path
+    style: plain
+  - properties:
+      branch_icon: ""
+      cache_duration: none
+      commit_icon: "@"
+      fetch_status: true
+      ignore_status:
+        - "~/projects/as-deployments"
+    template: " [<green>{{ .HEAD }}</>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}<cyan>{{ if gt .Behind 0 }} ⇣{{ end }}{{ if gt .Ahead 0 }} ⇡{{ end }}</>]"
+    foreground: blue
+    background: transparent
+    type: git
+    style: plain
+- type: prompt
+  alignment: right
+  segments:
+  - type: kubectl
+    style: diamond
+    foreground: blue
+    background: transparent
+    template: " [󱃾 {{.Context}}]"
+    properties:
+      context_aliases:
+        dev3.alpha-sense.org: dev3
+        dev4.as: dev4
+        rc.alpha-sense.org: rc
+        research.alpha-sense.org: research
+        slowpoke.alpha-sense.org: slowpoke
+        downloader.alpha-sense.org: downloader
+        downloader-dev.alpha-sense.org: downloader-dev
+        tools.alpha-sense.org: tools
+        findataprocessingdev.alpha-sense.org: findataprocessingdev
+      display_error: true
+      parse_kubeconfig: true
+  - type: executiontime
+    style: plain
+    foreground: blue
+    background: transparent
+    template: "[took <red>{{ .FormattedMs }}</>]"
+- type: prompt
+  newline: true
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+    template: $
+    background: transparent
+    type: text
+    style: plain
+    foreground_templates:
+    - "{{if gt .Code 0}}red{{end}}"
+    - "{{if eq .Code 0}}magenta{{end}}"
+# tooltips:
+#   - type: terraform
+#     tips:
+#       - tfswitch
+#       - terraform
+#     style: diamond
+#     foreground: blue
+#     background: transparent
+#     template: " [󱁢 {{.WorkspaceName}}{{if .Version}} {{.Version}}{{end}}]"
+#     properties:
+#       fetch_version: true
+#   - type: kubectl
+#     tips:
+#       - k
+#       - kubectl
+#       - kgp
+#       - kg
+#       - kd
+#       - kdp
+#     style: diamond
+#     foreground: blue
+#     background: transparent
+#     template: " [󱃾 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}]"
+#     properties:
+#       context_aliases:
+#         dev3.alpha-sense.org: dev3
+#         rc.alpha-sense.org: rc
+#         research.alpha-sense.org: research
+#         slowpoke.alpha-sense.org: slowpoke
+#         downloader.alpha-sense.org: downloader
+#         downloader-dev.alpha-sense.org: downloader-dev
+#         tools.alpha-sense.org: tools
+#       display_error: true
+#       parse_kubeconfig: true
+version: 3
+final_space: true
